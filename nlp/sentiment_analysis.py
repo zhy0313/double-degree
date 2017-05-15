@@ -337,11 +337,11 @@ def predict(model, filename, informative_features):
         row['pos'] = sentiment['pos']
         row['neg'] = sentiment['neg']
         # row['ssi'] = ssi
-        row['bi'] = bi+0.6 #统一加上
+        row['bi'] = bi
         row['dis'] = dis
         sentiment_result = sentiment_result.append(row,ignore_index=True)
 
-    sentiment_result.to_csv(basePath+'szzs-sentiment-add0.6.csv',sep='\t',encoding='utf-8',index=False,float_format='%.2f',low_memory=False)
+    sentiment_result.to_csv(basePath+'szzs-sentiment.csv',sep='\t',encoding='utf-8',index=False,float_format='%.2f',low_memory=False)
 
     # pd.DataFrame({'comment':original_data,'label':test_pred}).to_csv('../data/szzs-result.csv',sep='\t',encoding='utf-8',index=False)
 

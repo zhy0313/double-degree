@@ -20,13 +20,7 @@ ts = data['close']
 
 senti_data = pd.read_csv('../data/szzs-sentiment2.csv',sep='\t',parse_dates='date',index_col='date',date_parser=dateparse)
 senti_data = pd.DataFrame.sort_index(senti_data) #从小到大排序
-senti_ts = senti_data['bi']
-
-plt.plot(senti_ts,color='blue')
-plt.plot(data['p_change'],color='red')
-plt.show()
 senti_ts = senti_data['bi_change']
-
 # 滚动统计
 def rolling_statistic(timeseries):
     rolmean = pd.rolling_mean(timeseries, window=12)
@@ -180,7 +174,6 @@ def forecast(resultARIMA, start, n, exog=None):
     forecast_ARIMA_log = forecast_ARIMA_log[0]
     forecast_ARIMA_log = pd.Series(forecast_ARIMA_log, copy=True, index=new_index)
     forecast_ARIMA = np.exp(forecast_ARIMA_log)
-    print forecast_ARIMA
     plt.plot(ts, label='Original', color='blue')
     plt.plot(forecast_ARIMA, label='Forcast', color='red')
     plt.legend(loc='best')
